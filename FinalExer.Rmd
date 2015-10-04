@@ -1,10 +1,11 @@
 ---
-title: "FinalExer.Rmd"
+title: "Final exercise on gapminder population data"
 author: "Guillermo Ponce"
 date: "10/4/2015"
 output: html_document
 ---
-```{r read-in-data}
+
+```{r echo=FALSE}
 #install.packages("data.table")
 library(data.table)
 dt.in <- fread('output/combined_gapMinder.tsv')
@@ -22,6 +23,7 @@ plot(dt.tmp[country=='Australia',]$year, dt.tmp[country=='Australia',]$gdpPercap
      xlab='Year', ylab='GDP',
      main=paste0('GDP per Year for ', 'Australia'))
 ```
+
 A steep increasing trend in GDP for Australia
 
 ```{r echo=FALSE}
@@ -29,6 +31,7 @@ plot(dt.tmp[country=='United Kingdom',]$year, dt.tmp[country=='United Kingdom',]
      xlab='Year', ylab='GDP',
      main=paste0('GDP per Year for ', 'United Kingdom'))
 ```
+
 In the case of U.K., it also shows a similar trend to Australia.
 
 ```{r echo=FALSE}
@@ -36,25 +39,34 @@ plot(dt.tmp[country=='Mexico',]$year, dt.tmp[country=='Mexico',]$gdpPercap,
      xlab='Year', ylab='GDP',
      main=paste0('GDP per Year for ', 'Mexico'))
 ```
+
 Mexico shows an increasing trend in GDP after 1984
 
+
 The average, minimum and maximum life expectancy for these countries are:
+
 ```{r echo=FALSE}
 dt.tmp[,list(Country=country,Avg_LifeExp=mean(lifeExp),Min_LifeExp=min(lifeExp), Max_LifeExp=max(lifeExp)),by='country'][,2:5,with=FALSE]
 ```
 
 Distribution of life expectancy.
 Standard bin-width:
+
 ```{r echo=FALSE}
 hist(dt.in$lifeExp,
      main='Life Expectancy',
      xlab = 'Life Expectancy',
      ylab = 'Count')
 ```
+
 Bin-width changed:
+
 ```{r echo=FALSE}
-hist(dt.in$lifeExp, breaks=40,
+x <- dt.in$lifeExp
+hist(x, breaks=40,
      main='Life Expectancy',
      xlab = 'Life Expectancy',
-     ylab = 'Count')
+     ylab = 'Count',col='lightgreen')
+curve(dnorm(x, mean=mean(x), sd=sd(x)), add=TRUE, col='darkblue', lwd=2) 
 ```
+
