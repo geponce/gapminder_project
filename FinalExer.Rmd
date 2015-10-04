@@ -2,7 +2,9 @@
 title: "Final exercise on gapminder population data"
 author: "Guillermo Ponce"
 date: "10/4/2015"
-output: html_document
+output:
+  html_document:
+    highlight: kate
 ---
 
 ```{r echo=FALSE}
@@ -18,6 +20,7 @@ vCountry <-c('Australia','United Kingdom','Mexico','China')
 #      main=paste0('GDP per Year for ', i))
 # }
 ```
+
 ```{r echo=FALSE}
 plot(dt.tmp[country=='Australia',]$year, dt.tmp[country=='Australia',]$gdpPercap,
      xlab='Year', ylab='GDP',
@@ -50,7 +53,7 @@ dt.tmp[,list(Country=country,Avg_LifeExp=mean(lifeExp),Min_LifeExp=min(lifeExp),
 ```
 
 Distribution of life expectancy.
-Standard bin-width:
+Standard bin-width
 
 ```{r echo=FALSE}
 hist(dt.in$lifeExp,
@@ -59,14 +62,11 @@ hist(dt.in$lifeExp,
      ylab = 'Count')
 ```
 
-Bin-width changed:
+Bin-width changed
 
 ```{r echo=FALSE}
-x <- dt.in$lifeExp
-hist(x, breaks=40,
+hist(dt.in$lifeExp, breaks=40,
      main='Life Expectancy',
      xlab = 'Life Expectancy',
      ylab = 'Count',col='lightgreen')
-curve(dnorm(x, mean=mean(x), sd=sd(x)), add=TRUE, col='darkblue', lwd=2) 
 ```
-
