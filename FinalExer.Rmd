@@ -1,0 +1,44 @@
+---
+title: "FinalExer.Rmd"
+author: "Guillermo Ponce"
+date: "10/4/2015"
+output: html_document
+---
+```{r read-in-data}
+#install.packages("data.table")
+library(data.table)
+dt.in <- fread('output/combined_gapMinder.tsv')
+dt.tmp <- dt.in[country=='Australia' | country=='United Kingdom' | country=='Mexico',]
+
+vCountry <-c('Australia','United Kingdom','Mexico','China') 
+# #for (i in vCountry) {    
+#   plot(dt.tmp[country==i,]$year, dt.tmp[country==i,]$gdpPercap,
+#      xlab='Year', ylab='GDP',
+#      main=paste0('GDP per Year for ', i))
+# }
+```
+```{r echo=FALSE}
+plot(dt.tmp[country=='Australia',]$year, dt.tmp[country=='Australia',]$gdpPercap,
+     xlab='Year', ylab='GDP',
+     main=paste0('GDP per Year for ', 'Australia'))
+````
+A steep increasing trend in GDP for Australia
+
+```{r echo=FALSE}
+plot(dt.tmp[country=='United Kingdom',]$year, dt.tmp[country=='United Kingdom',]$gdpPercap,
+     xlab='Year', ylab='GDP',
+     main=paste0('GDP per Year for ', 'United Kingdom'))
+````
+In the case of U.K., it also shows a similar trend to Australia.
+
+```{r echo=FALSE}
+plot(dt.tmp[country=='Mexico',]$year, dt.tmp[country=='Mexico',]$gdpPercap,
+     xlab='Year', ylab='GDP',
+     main=paste0('GDP per Year for ', 'Mexico'))
+````
+Mexico shows an increasing trend in GDP after 1984
+
+The average, minimum and maximum life expectancy for these countries are:
+```{r echo=FALSE}
+dt.tmp[,list(Country=country,Avg_LifeExp=mean(lifeExp),Min_LifeExp=min(lifeExp), Max_LifeExp=max(lifeExp)),by='country'][,2:5,with=FALSE]
+````

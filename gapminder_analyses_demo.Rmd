@@ -13,10 +13,20 @@ When you click the **Knit** button a document will be generated that includes bo
 summary(cars)
 ```
 
+```{r read-in-data}
+#install.packages("data.table")
+library(data.table)
+dt.in <- fread('output/combined_gapMinder.tsv')
+dt.in[,2:3, with=FALSE]
+
+dt.in[year==2002,list(meanPop = mean(pop)), by = c('continent')]
+
+```
+
 You can also embed plots, for example:
  
 ```{r, echo=FALSE}
-plot(cars)
+plot(cars) 
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
