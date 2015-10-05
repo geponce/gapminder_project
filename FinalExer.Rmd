@@ -3,11 +3,11 @@ title: "Final exercise on gapminder population data"
 author: "Guillermo Ponce"
 date: "10/4/2015"
 output:
-  html_document:
-    highlight: kate
+  html_document:  
+    self_contained: false
 ---
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=FALSE}
 #install.packages("data.table")
 library(data.table)
 dt.in <- fread('output/combined_gapMinder.tsv')
