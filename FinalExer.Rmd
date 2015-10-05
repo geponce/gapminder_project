@@ -63,7 +63,7 @@ hist(dt.in$lifeExp,
 ```
 
 Bin-width changed
-
+## Testing
 ```{r echo=FALSE} 
 hist(dt.in$lifeExp, breaks=40,
      main='Life Expectancy',
