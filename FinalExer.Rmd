@@ -64,7 +64,7 @@ hist(dt.in$lifeExp,
 
 Bin-width changed
 
-```{r echo=FALSE}
+```{r echo=FALSE} 
 hist(dt.in$lifeExp, breaks=40,
      main='Life Expectancy',
      xlab = 'Life Expectancy',
